@@ -35,6 +35,7 @@ lib.mkIf (theShell == "bash") {
       la="lsd -a";
       lal="lsd -al";
       ".."="cd ..";
+      reboot="sudo shutdown -r now";
       neofetch="neofetch --ascii ~/.config/ascii-neofetch";
     };
   };
