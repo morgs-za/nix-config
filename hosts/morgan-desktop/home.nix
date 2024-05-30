@@ -59,7 +59,7 @@ in
   home.file.".face.icon".source = ../../config/face.jpg;
   home.file.".config/neofetch/config.conf".text = ''
     print_info() {
-        prin "$(color 6)  ZaneyOS $ZANEYOS_VERSION"
+        prin "$(color 6)  MORGSOS $MORGSOS_VERSION"
         info underline
         info "$(color 7)  VER" kernel
         info "$(color 2)  UP " uptime
@@ -445,4 +445,4 @@ in
       };
     };
   };
-}
+} 
