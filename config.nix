@@ -15,27 +15,36 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware.nix
+      ./modules/amd-drivers.nix
     ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "morgan-desktop"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   # Enable networking
   networking.networkmanager.enable = true;
+  networking.hostName = "${host}"; # Define your hostname.
+  networking.timeServers = options.networking.timeServers.default ++ [ "pool.ntp.org" ];
 
   # Set your time zone.
   time.timeZone = "Africa/Johannesburg";
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_ZA.UTF-8";
+  i18n.extraLocaleSettings = {
+    LC_ADDRESS = "en_ZA.UTF-8";
+    LC_IDENTIFICATION = "en_ZA.UTF-8";
+    LC_MEASUREMENT = "en_ZA.UTF-8";
+    LC_MONETARY = "en_ZA.UTF-8";
+    LC_NAME = "en_ZA.UTF-8";
+    LC_NUMERIC = "en_ZA.UTF-8";
+    LC_PAPER = "en_ZA.UTF-8";
+    LC_TELEPHONE = "en_ZA.UTF-8";
+    LC_TIME = "en_ZA.UTF-8";
+  };
+
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -58,6 +67,20 @@
   nix.settings.experimental-features = [ "nix-command" "flakes"];
 
   programs.hyprland.enable = true;
+  programs = {
+    dconf.enable = true;
+    fuse.userAllowOther = true;
+    gnupg.agent = {
+      enable = true;
+      enableSSHSupport = true;
+    };
+    steam = {
+      enable = true;
+      gamescopeSession.enable = true;
+      remotePlay.openFirewall = true;
+      dedicatedServer.openFirewall = true;
+    };
+  };
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -89,6 +112,9 @@
     wget
     wl-clipboard
   ];
+
+  # Extra Module Options
+  drivers.amdgpu.enable = true;
 
   # Services
   # RootKit

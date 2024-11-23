@@ -1,7 +1,6 @@
 { 
    pkgs,
    username,
-   host,
    ... }:
 {
   # This needs to actually be set to your username
@@ -11,7 +10,7 @@
      
   # Import Program Configs
   imports = [
-    ./neovim.nix
+    ./programs/neovim.nix
   ];
 
   # Install & Configure Git
