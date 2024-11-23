@@ -62,12 +62,32 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    bat
     brave
+    discord
+    eza
+    ffmpeg
     git
     gh
+    greetd.tuigreet
+    killall
     kitty
+    lm_sensors
+    lshw
+    meson
     neovim
+    networkmanagerapplet
+    nh
+    nixfmt-rfc-style
+    pavucontrol
+    pkg-config
+    pciutils
+    ripgrep
+    tree
+    unrar
+    unzip
     wget
+    wl-clipboard
   ];
 
   # Services
@@ -78,6 +98,17 @@
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
+  };
+
+  services.greetd = {
+    enable = true;
+    vt = 3;
+    settings = {
+      default_session = {
+        user = username;
+	command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd Hyprland";
+      };
+    };
   };
 
   system.stateVersion = "24.05"; # Did you read the comment?

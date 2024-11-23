@@ -11,7 +11,7 @@
      
   # Import Program Configs
   imports = [
-    #./neovim.nix
+    ./neovim.nix
   ];
 
   # Install & Configure Git
