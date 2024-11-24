@@ -63,10 +63,13 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
   
-  #Flakes
+  # Flakes
   nix.settings.experimental-features = [ "nix-command" "flakes"];
 
+  # Hyprland
   programs.hyprland.enable = true;
+  #programs.hyprpanel.enable = true;
+
   programs = {
     dconf.enable = true;
     fuse.userAllowOther = true;
@@ -93,6 +96,7 @@
     git
     gh
     greetd.tuigreet
+    hyprpaper
     killall
     kitty
     lm_sensors
@@ -112,6 +116,19 @@
     wget
     wl-clipboard
   ];
+
+  fonts = {
+    packages = with pkgs; [
+      nerdfonts
+      noto-fonts-emoji
+      noto-fonts-cjk-sans
+      font-awesome
+      (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+      # Commenting Symbola out to fix install this will need to be fixed or an alternative found.
+      # symbola
+      material-icons
+    ];
+  };
 
   # Extra Module Options
   drivers.amdgpu.enable = true;

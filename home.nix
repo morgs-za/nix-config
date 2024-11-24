@@ -11,6 +11,7 @@
   # Import Program Configs
   imports = [
     ./programs/neovim.nix
+    .programs/waybar.nix
   ];
 
   # Install & Configure Git
