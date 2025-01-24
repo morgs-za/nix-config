@@ -57,6 +57,13 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
   programs = {
+    dconf.enable = true;
+    steam = {
+      enable = true;
+      gamescopeSession.enable = true;
+      remotePlay.openFirewall = true;
+      dedicatedServer.openFirewall = true;
+    };
     nvf = {
       enable = true;
       settings = {
@@ -115,6 +122,7 @@
   environment.systemPackages = with pkgs; [
     bat
     brave
+    discord
     eza
     git
     gh
@@ -122,9 +130,13 @@
     killall
     kitty
     lm_sensors
+    lshw
     nh
     nixfmt-rfc-style
     pavucontrol
+    ripgrep
+    tree
+    waybar
     wget
     wl-clipboard
   ];
@@ -136,6 +148,21 @@
   #   enable = true;
   #   enableSSHSupport = true;
   # };
+  
+  # Fonts
+  fonts = {
+  packages = [
+    pkgs.nerd-fonts.jetbrains-mono
+    pkgs.ubuntu_font_family
+  ];
+  fontconfig = {
+    defaultFonts = {
+      serif = [  "Ubuntu" "Vazirmatn" ];
+      sansSerif = [ "Ubuntu" "Vazirmatn" ];
+      monospace = [ "JetBrains Mono" ];
+    };
+  };
+  };
 
   # List services that you want to enable:
   services = {
