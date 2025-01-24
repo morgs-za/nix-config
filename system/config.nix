@@ -13,13 +13,14 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware.nix
+      ./amd-drivers.nix
     ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "morgan-desktop"; # Define your hostname.
+  networking.hostName = host; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -34,6 +35,19 @@
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_ZA.UTF-8";
+  
+  i18n.extraLocaleSettings = {
+    LC_ADDRESS = "en_ZA.UTF-8";
+    LC_IDENTIFICATION = "en_ZA.UTF-8";
+    LC_MEASUREMENT = "en_ZA.UTF-8";
+    LC_MONETARY = "en_ZA.UTF-8";
+    LC_NAME = "en_ZA.UTF-8";
+    LC_NUMERIC = "en_ZA.UTF-8";
+    LC_PAPER = "en_ZA.UTF-8";
+    LC_TELEPHONE = "en_ZA.UTF-8";
+    LC_TIME = "en_ZA.UTF-8";
+  };
+
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -53,6 +67,8 @@
     };
  };
 
+  drivers.amdgpu.enable = true;
+  
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -164,6 +180,20 @@
   };
   };
 
+  xdg.portal = {
+    enable = true;
+    wlr.enable = true;
+    extraPortals = [
+      pkgs.xdg-desktop-portal-gtk
+      pkgs.xdg-desktop-portal
+    ];
+    configPackages = [
+      pkgs.xdg-desktop-portal-gtk
+      pkgs.xdg-desktop-portal-hyprland
+      pkgs.xdg-desktop-portal
+    ];
+  };
+
   # List services that you want to enable:
   services = {
    greetd = {
@@ -176,8 +206,18 @@
         };
       };
     };
+    pipewire = {
+      enable = true;
+      alsa.enable = true;
+      alsa.support32Bit = true;
+      pulse.enable = true;
+    };
 
   };
+
+  # Extra Logitech Support
+  hardware.logitech.wireless.enable = true;
+  hardware.logitech.wireless.enableGraphical = true;
 
   # Optimization settings and garbage collection automation
   nix = {
