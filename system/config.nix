@@ -2,7 +2,12 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ 
+  config, 
+  pkgs,
+  username,
+  host,
+  ... }:
 
 {
   imports =
@@ -37,19 +42,20 @@
   };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.morgs = {
-    isNormalUser = true;
-    description = "Morgan";
-    extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [];
-  };
+  users.users = {
+    "${username}" = {
+        isNormalUser = true;
+        description = "Morgan";
+        extraGroups = [ "networkmanager" "wheel" ];
+        shell = pkgs.bash;
+        ignoreShellProgramCheck = true;
+        packages = with pkgs; [];
+    };
+ };
+
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
-
-  # Enable Flakes
-  nix.settings.experimental-features = [ "nix-command" "flakes"];
-
   programs = {
     nvf = {
       enable = true;
@@ -88,12 +94,28 @@
     };
     };
     hyprland.enable = true;
+    bash = {
+      shellAliases = {
+        sv = "sudo nvim";
+        fr = "nh os switch --hostname ${host} /home/${username}/Code/nix-config";
+        fu = "nh os switch --hostname ${host} --update /home/${username}/Code/nix-config";
+        ncg = "nix-collect-garbage --delete-old && sudo nix-collect-garbage -d && sudo /run/current-system/bin/switch-to-configuration boot";
+        v = "nvim .";
+        cat = "bat";
+        ls = "eza --icons";
+        ll = "eza -lh --icons --grid --group-directories-first";
+        la = "eza -lah --icons --grid --group-directories-first";
+        ".." = "cd ..";
+      };
+    };
   };
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    bat
     brave
+    eza
     git
     gh
     greetd.tuigreet
@@ -122,13 +144,32 @@
       vt = 3;
       settings = {
         default_session = {
-          user = "morgs";
+          user = username;
           command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd Hyprland"; # start Hyprland with a TUI login manager
         };
       };
     };
 
   };
+
+  # Optimization settings and garbage collection automation
+  nix = {
+    settings = {
+      auto-optimise-store = true;
+      experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
+      substituters = [ "https://hyprland.cachix.org" ];
+      trusted-public-keys = [ "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc=" ];
+    };
+    gc = {
+      automatic = true;
+      dates = "weekly";
+      options = "--delete-older-than 7d";
+    };
+  };
+
 
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;

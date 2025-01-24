@@ -6,12 +6,26 @@
     nvf.url = "github:notashelf/nvf";
   };
   
-  outputs = { nixpkgs, nvf, ...}: {
-    nixosConfigurations.morgan-desktop = nixpkgs.lib.nixosSystem {
+  outputs = { nixpkgs, nvf, ...}@inputs: 
+    let
+       system = "x86_64-linux";
+       host = "morgan-desktop";
+       username = "morgs";
+    in
+    {
+    nixosConfigurations = {
+      "${host}" = nixpkgs.lib.nixosSystem {
+      specialArgs = {
+        inherit system;
+        inherit inputs;
+        inherit username;
+        inherit host;
+      };
       modules = [
         nvf.nixosModules.default
         ./system/config.nix
       ];
     };
+  };
   };
 }
