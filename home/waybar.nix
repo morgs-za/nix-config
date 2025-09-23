@@ -43,7 +43,7 @@
       /* Catppuccin-Mocha theme */
       * {
         font-family: FiraCode Nerd Font, sans-serif;
-        font-size: 14px;
+        font-size = 14px;
         border: none;
         border-radius: 0;
         min-height: 0;
@@ -76,6 +76,6 @@
 
   # Ensure FiraCode Nerd Font is available
   home.packages = with pkgs; [
-    (nerdfonts.override { fonts = [ "FiraCode" ]; })
+    nerd-fonts.fira-code
   ];
 }
