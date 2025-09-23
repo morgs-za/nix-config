@@ -47,11 +47,11 @@
   xdg.portal = {
     enable = true;
     wlr.enable = true;  # Enable Wayland-specific portal
-    gtk.enable = true;  # Enable GTK portal compatibility
     extraPortals = [ 
       pkgs.xdg-desktop-portal-hyprland 
       pkgs.xdg-desktop-portal-gtk 
       pkgs.xdg-desktop-portal
+      pkgs.xdg-desktop-portal-wlr  # Add for Wayland compatibility
     ];
     configPackages = [
       pkgs.xdg-desktop-portal-hyprland
