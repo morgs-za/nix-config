@@ -14,6 +14,7 @@
         margin-top = 6;
         margin-bottom = 6;
         margin-left = 6;
+        preferred-color-scheme = "dark";  # Force dark theme
         modules-left = [ "hyprland/workspaces" ];
         "hyprland/workspaces" = {
           format = "{icon}";
@@ -40,6 +41,7 @@
         spacing = 6;
         margin-top = 6;
         margin-bottom = 6;
+        preferred-color-scheme = "dark";  # Force dark theme
         modules-center = [ "clock" ];
         clock = {
           format = "🕰 {:%Y-%m-%d %H:%M}";
@@ -55,6 +57,7 @@
         margin-top = 6;
         margin-bottom = 6;
         margin-right = 6;
+        preferred-color-scheme = "dark";  # Force dark theme
         modules-right = [ "cpu" "memory" "network" "pulseaudio" "tray" ];
         cpu = {
           format = "🖥 {usage}%";
@@ -94,7 +97,6 @@
         padding: 0 10px;
         margin: 0 5px;
         transition: all 0.2s ease-in-out;
-        gtk-application-prefer-dark-theme: true; /* Force dark theme */
       }
       window#waybar.leftBar, window#waybar.centerBar, window#waybar.rightBar {
         background: #1e1e2e99; /* Mocha base, semi-transparent (60%) */
