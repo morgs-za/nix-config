@@ -210,7 +210,7 @@
     enable = true;
     themeFile = "Catppuccin-Mocha";
     settings = {
-      font_size = 12;
+      font_size = 16;
       scrollback_lines = 10000;
     };
   };
