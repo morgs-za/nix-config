@@ -94,9 +94,10 @@
         padding: 0 10px;
         margin: 0 5px;
         transition: all 0.2s ease-in-out;
+        gtk-application-prefer-dark-theme: true; /* Force dark theme */
       }
       window#waybar.leftBar, window#waybar.centerBar, window#waybar.rightBar {
-        background: rgba(30,30,46,0.6); /* Mocha base, semi-transparent */
+        background: #1e1e2e99; /* Mocha base, semi-transparent (60%) */
         color: #cdd6f4; /* Mocha text */
         border-radius: 14px;
         border: 1px solid #45475a; /* Mocha surface1 */

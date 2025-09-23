@@ -56,6 +56,11 @@
       pkgs.xdg-desktop-portal-hyprland
       pkgs.xdg-desktop-portal-gtk
     ];
+    config = {
+      common = {
+        preferred = "hyprland";  # Prioritize xdg-desktop-portal-hyprland
+      };
+    };
   };
 
   # Environment variables for XDG portal
