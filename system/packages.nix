@@ -5,8 +5,24 @@
 
   environment.systemPackages = with pkgs; [
     xdg-user-dirs
+    xdg-utils
+    btop
+    bat
+    curl
+    wget
+    iputils
+    zip
+    unzip
+    p7zip
+    wl-clipboard
+    grim
+    slurp
+    wf-recorder
+    noto-fonts
+    udisks2
     cage
     greetd.gtkgreet
+    brightnessctl
   ];
 
   # Enable PipeWire for audio
