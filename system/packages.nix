@@ -47,6 +47,7 @@
   xdg.portal = {
     enable = true;
     wlr.enable = true;  # Enable Wayland-specific portal
+    gtk.enable = true;  # Enable GTK portal compatibility
     extraPortals = [ 
       pkgs.xdg-desktop-portal-hyprland 
       pkgs.xdg-desktop-portal-gtk 
@@ -59,33 +60,6 @@
     config = {
       common = {
         preferred = "hyprland";  # Prioritize xdg-desktop-portal-hyprland
-      };
-    };
-  };
-
-  # Ensure XDG portal services start correctly
-  systemd.user.services = {
-    xdg-desktop-portal = {
-      description = "XDG Desktop Portal";
-      wantedBy = [ "graphical-session.target" ];
-      partOf = [ "graphical-session.target" ];
-      serviceConfig = {
-        Type = "dbus";
-        BusName = "org.freedesktop.portal.Desktop";
-        ExecStart = "${pkgs.xdg-desktop-portal}/libexec/xdg-desktop-portal";
-        Restart = "on-failure";
-      };
-    };
-    xdg-desktop-portal-hyprland = {
-      description = "XDG Desktop Portal for Hyprland";
-      wantedBy = [ "graphical-session.target" ];
-      partOf = [ "graphical-session.target" ];
-      after = [ "xdg-desktop-portal.service" ];
-      requires = [ "xdg-desktop-portal.service" ];
-      serviceConfig = {
-        Type = "simple";
-        ExecStart = "${pkgs.xdg-desktop-portal-hyprland}/libexec/xdg-desktop-portal-hyprland";
-        Restart = "on-failure";
       };
     };
   };
