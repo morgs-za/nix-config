@@ -5,18 +5,16 @@
     enable = true;
     package = pkgs.waybar;  # Use Waybar from nixos-25.05
     settings = {
-      mainBar = {
+      leftBar = {
         layer = "top";
         position = "top";
-        height = 40;  # Increased from 34
-        spacing = 6;  # Increased from 4
-        margin-top = 6;  # Increased from 4
-        margin-bottom = 6;  # Increased from 4
-        margin-left = 6;  # Increased from 4
-        margin-right = 6;  # Increased from 4
+        height = 40;
+        width = 300;  # Fixed width for left bar
+        spacing = 6;
+        margin-top = 6;
+        margin-bottom = 6;
+        margin-left = 6;
         modules-left = [ "hyprland/workspaces" ];
-        modules-center = [ "clock" ];
-        modules-right = [ "cpu" "memory" "network" "pulseaudio" "tray" ];
         "hyprland/workspaces" = {
           format = "{icon}";
           format-icons = {
@@ -33,10 +31,31 @@
           };
           on-click = "activate";
         };
+      };
+      centerBar = {
+        layer = "top";
+        position = "top";
+        height = 40;
+        width = 400;  # Fixed width for center bar
+        spacing = 6;
+        margin-top = 6;
+        margin-bottom = 6;
+        modules-center = [ "clock" ];
         clock = {
           format = "🕰 {:%Y-%m-%d %H:%M}";
           tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
         };
+      };
+      rightBar = {
+        layer = "top";
+        position = "top";
+        height = 40;
+        width = 600;  # Fixed width for right bar
+        spacing = 6;
+        margin-top = 6;
+        margin-bottom = 6;
+        margin-right = 6;
+        modules-right = [ "cpu" "memory" "network" "pulseaudio" "tray" ];
         cpu = {
           format = "🖥 {usage}%";
           tooltip = true;
@@ -60,7 +79,7 @@
           tooltip = true;
         };
         tray = {
-          spacing = 12;  # Increased from 10
+          spacing = 12;
         };
       };
     };
@@ -68,22 +87,29 @@
       /* Catppuccin-Mocha theme */
       * {
         font-family: FiraCode Nerd Font, sans-serif;
-        font-size: 16px; /* Increased from 14px */
+        font-size: 16px;
         border: none;
-        border-radius: 10px; /* Increased from 8px */
+        border-radius: 10px;
         min-height: 0;
-        padding: 0 10px; /* Adjusted for larger size */
-        margin: 0 5px; /* Adjusted for larger size */
+        padding: 0 10px;
+        margin: 0 5px;
         transition: all 0.2s ease-in-out;
       }
-      window#waybar {
-        background: rgba(30, 30, 46, 0.6); /* More transparent (was 0.8) */
+      window#waybar.leftBar, window#waybar.centerBar, window#waybar.rightBar {
+        background: rgba(30, 30, 46, 0.6); /* Mocha base, semi-transparent */
         color: #cdd6f4; /* Mocha text */
-        border-radius: 14px; /* Increased from 12px */
+        border-radius: 14px;
         border: 1px solid #45475a; /* Mocha surface1 */
       }
+      window#waybar.centerBar {
+        margin-left: auto;
+        margin-right: auto;
+      }
+      window#waybar.rightBar {
+        margin-left: auto;
+      }
       #workspaces button {
-        padding: 0 12px; /* Adjusted for larger size */
+        padding: 0 12px;
         background: #313244; /* Mocha surface0 */
         color: #cdd6f4; /* Mocha text */
         border-radius: 10px;
