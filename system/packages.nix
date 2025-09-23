@@ -34,17 +34,6 @@
     jack.enable = true;   # JACK compatibility
   };
 
-  # Enable XDG desktop portal services
-  services.xdg.desktopPortal = {
-    enable = true;
-    wlr.enable = true;  # Wayland-specific portal
-    extraPortals = [ 
-      pkgs.xdg-desktop-portal-hyprland 
-      pkgs.xdg-desktop-portal-gtk 
-      pkgs.xdg-desktop-portal
-    ];
-  };
-
   nix = {
     package = pkgs.nixVersions.stable;
     extraOptions = ''
@@ -69,7 +58,13 @@
     ];
   };
 
-  environment.sessionVariables.NIXOS_OZONE_WL = "1";
+  # Environment variables for XDG portal
+  environment.sessionVariables = {
+    NIXOS_OZONE_WL = "1";
+    XDG_CURRENT_DESKTOP = "Hyprland";
+    XDG_SESSION_DESKTOP = "Hyprland";
+    XDG_SESSION_TYPE = "wayland";
+  };
 
   home-manager.backupFileExtension = "backup";
 }
