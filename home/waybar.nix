@@ -96,7 +96,7 @@
         transition: all 0.2s ease-in-out;
       }
       window#waybar.leftBar, window#waybar.centerBar, window#waybar.rightBar {
-        background: rgba(30, 30, 46, 0.6); /* Mocha base, semi-transparent */
+        background: rgba(30,30,46,0.6); /* Mocha base, semi-transparent, no spaces */
         color: #cdd6f4; /* Mocha text */
         border-radius: 14px;
         border: 1px solid #45475a; /* Mocha surface1 */
