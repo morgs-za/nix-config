@@ -22,8 +22,8 @@
         inherit system;
         specialArgs = { inherit inputs; };
         modules = [
-          ./configuration.nix
-          ./hardware-configuration.nix
+          ./config.nix
+          ./hardware.nix
           home-manager.nixosModules.home-manager
           {
             home-manager = {
