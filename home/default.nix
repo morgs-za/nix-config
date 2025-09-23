@@ -7,6 +7,7 @@
     ./nixvim.nix
     ./starship.nix
     ./git.nix
+    ./waybar.nix
   ];
 
   home.stateVersion = "25.05";

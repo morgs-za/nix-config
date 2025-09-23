@@ -2,7 +2,8 @@
 
 {
   networking.hostName = "morgan-desktop";
-  networking.networkmanager.enable = true;
+  #networking.networkmanager.enable = true;
+  networking.useDHCP = true;  # Enable DHCP for wired Ethernet
 
   time.timeZone = "Africa/Johannesburg";
 

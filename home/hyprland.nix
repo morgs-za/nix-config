@@ -12,6 +12,10 @@
         "HDMI-A-1,1920x1080@75,3440x0,auto"
       ];
 
+      exec-once = [
+        "waybar"  # Start Waybar on Hyprland launch
+      ];
+
       "$terminal" = "kitty";
       "$browser" = "brave";
       "$menu" = "wofi --show drun";
