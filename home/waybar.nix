@@ -8,12 +8,12 @@
       mainBar = {
         layer = "top";
         position = "top";
-        height = 34;
-        spacing = 4;
-        margin-top = 4;
-        margin-bottom = 4;
-        margin-left = 4;
-        margin-right = 4;
+        height = 40;  # Increased from 34
+        spacing = 6;  # Increased from 4
+        margin-top = 6;  # Increased from 4
+        margin-bottom = 6;  # Increased from 4
+        margin-left = 6;  # Increased from 4
+        margin-right = 6;  # Increased from 4
         modules-left = [ "hyprland/workspaces" ];
         modules-center = [ "clock" ];
         modules-right = [ "cpu" "memory" "network" "pulseaudio" "tray" ];
@@ -60,7 +60,7 @@
           tooltip = true;
         };
         tray = {
-          spacing = 10;
+          spacing = 12;  # Increased from 10
         };
       };
     };
@@ -68,25 +68,25 @@
       /* Catppuccin-Mocha theme */
       * {
         font-family: FiraCode Nerd Font, sans-serif;
-        font-size: 14px;
+        font-size: 16px; /* Increased from 14px */
         border: none;
-        border-radius: 8px;
+        border-radius: 10px; /* Increased from 8px */
         min-height: 0;
-        padding: 0 8px;
-        margin: 0 4px;
+        padding: 0 10px; /* Adjusted for larger size */
+        margin: 0 5px; /* Adjusted for larger size */
         transition: all 0.2s ease-in-out;
       }
       window#waybar {
-        background: rgba(30, 30, 46, 0.8); /* Mocha base with transparency */
+        background: rgba(30, 30, 46, 0.6); /* More transparent (was 0.8) */
         color: #cdd6f4; /* Mocha text */
-        border-radius: 12px;
+        border-radius: 14px; /* Increased from 12px */
         border: 1px solid #45475a; /* Mocha surface1 */
       }
       #workspaces button {
-        padding: 0 10px;
+        padding: 0 12px; /* Adjusted for larger size */
         background: #313244; /* Mocha surface0 */
         color: #cdd6f4; /* Mocha text */
-        border-radius: 8px;
+        border-radius: 10px;
       }
       #workspaces button:hover {
         background: #585b70; /* Mocha overlay0 */
@@ -123,7 +123,7 @@
       tooltip {
         background: #1e1e2e; /* Mocha base */
         border: 1px solid #45475a; /* Mocha surface1 */
-        border-radius: 8px;
+        border-radius: 10px;
         color: #cdd6f4; /* Mocha text */
       }
     '';
