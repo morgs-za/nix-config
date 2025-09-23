@@ -30,7 +30,7 @@
               useGlobalPkgs = true;
               useUserPackages = true;
               extraSpecialArgs = { inherit inputs; };
-              users.morgs = import ./home.nix;
+              users.morgs = import ./home/default.nix;
             };
           }
         ];
