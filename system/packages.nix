@@ -5,6 +5,8 @@
 
   environment.systemPackages = with pkgs; [
     xdg-user-dirs
+    cage
+    greetd.gtkgreet
   ];
 
   # Enable PipeWire for audio
