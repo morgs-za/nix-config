@@ -64,6 +64,17 @@
     };
   };
 
+  # Ensure xdg-desktop-portal starts with graphical session
+  systemd.user.services.xdg-desktop-portal = {
+    description = "XDG Desktop Portal";
+    wantedBy = [ "graphical-session.target" ];
+    partOf = [ "graphical-session.target" ];
+    serviceConfig = {
+      ExecStart = "${pkgs.xdg-desktop-portal}/libexec/xdg-desktop-portal";
+      Restart = "on-failure";
+    };
+  };
+
   # Environment variables for XDG portal
   environment.sessionVariables = {
     NIXOS_OZONE_WL = "1";

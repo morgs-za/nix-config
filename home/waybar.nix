@@ -94,12 +94,11 @@
         border: none;
         border-radius: 10px;
         min-height: 0;
-        padding: 0 10px;
-        margin: 0 5px;
-        transition: all 0.2s ease-in-out;
+        padding: 0px 10px;
+        margin: 0px 5px;
       }
       window#waybar.leftBar, window#waybar.centerBar, window#waybar.rightBar {
-        background: #1e1e2e99; /* Mocha base, semi-transparent (60%) */
+        background: transparent; /* Fully transparent bar */
         color: #cdd6f4; /* Mocha text */
         border-radius: 14px;
         border: 1px solid #45475a; /* Mocha surface1 */
@@ -112,7 +111,7 @@
         margin-left: auto;
       }
       #workspaces button {
-        padding: 0 12px;
+        padding: 0px 12px;
         background: #313244; /* Mocha surface0 */
         color: #cdd6f4; /* Mocha text */
         border-radius: 10px;
