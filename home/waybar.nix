@@ -8,7 +8,7 @@
       leftBar = {
         layer = "top";
         position = "top";
-        height = 40;
+        height = 48;  # Increased for slightly bigger bar
         width = 300;  # Fixed width for left bar
         spacing = 6;
         margin-top = 6;
@@ -36,7 +36,7 @@
       centerBar = {
         layer = "top";
         position = "top";
-        height = 40;
+        height = 48;  # Increased for slightly bigger bar
         width = 400;  # Fixed width for center bar
         spacing = 6;
         margin-top = 6;
@@ -51,7 +51,7 @@
       rightBar = {
         layer = "top";
         position = "top";
-        height = 40;
+        height = 48;  # Increased for slightly bigger bar
         width = 600;  # Fixed width for right bar
         spacing = 6;
         margin-top = 6;
@@ -90,7 +90,7 @@
       /* Catppuccin-Mocha theme */
       * {
         font-family: FiraCode Nerd Font, sans-serif;
-        font-size: 16px;
+        font-size: 18px; /* Increased for larger bar */
         border: none;
         border-radius: 10px;
         min-height: 0;
@@ -100,8 +100,6 @@
       window#waybar.leftBar, window#waybar.centerBar, window#waybar.rightBar {
         background: transparent; /* Fully transparent bar */
         color: #cdd6f4; /* Mocha text */
-        border-radius: 14px;
-        border: 1px solid #45475a; /* Mocha surface1 */
       }
       window#waybar.centerBar {
         margin-left: auto;
@@ -123,7 +121,6 @@
       #workspaces button.active {
         background: #89b4fa; /* Mocha blue */
         color: #1e1e2e; /* Mocha base */
-        border: 1px solid #b4befe; /* Mocha lavender */
       }
       #clock {
         background: #313244; /* Mocha surface0 */
